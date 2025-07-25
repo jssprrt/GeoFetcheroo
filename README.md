@@ -10,7 +10,10 @@ GeoFetcheroo is a command‑line utility that bridges GEO and SRA to give you al
 
 ## Dependencies
 
-- **R** (≥ 4.0)  
+- **R** (≥ 4.0)
+- **esearch**
+   ```r
+   sh -c "$(curl -fsSL https://ftp.ncbi.nlm.nih.gov/entrez/entrezdirect/install-edirect.sh)"
 - **GEOquery** R package  
   ```r
   install.packages("GEOquery")

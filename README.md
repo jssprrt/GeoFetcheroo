@@ -14,4 +14,4 @@ GeoFetcheroo is a playful yet powerful command‑line utility that bridges GEO a
 - **GEOquery** R package  
   ```r
   install.packages("GEOquery")
-```
+

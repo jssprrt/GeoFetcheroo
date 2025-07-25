@@ -48,13 +48,11 @@ echo
 # ── Part 3: For each SRX, get SRR runs + BioSample + BioSampleTitle ──
 echo -e "GSE\tSRX\tSRR\tBioSample\tBioSampleTitle"
 for srx in "${SRX_IDS[@]}"; do
-  # fetch Run (col1) and BioSample (col26)
   esearch -db sra -query "$srx" \
     | efetch -format runinfo \
     | awk -F, 'NR>1 { print $1 "\t" $26 }' \
     > runs.tsv
 
-  # for each run, lookup the BioSample Title
   while IFS=$'\t' read -r SRR BS; do
     TITLE=$(esearch -db biosample -query "$BS" \
              | efetch -format xml \

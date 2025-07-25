@@ -8,7 +8,7 @@ fi
 
 GSE=$1
 
-# ── Part 1: Get GSM IDs from the series ─────────────────────────────
+# Get GSM IDs from the series
 GSM_IDS_STR=$(Rscript --vanilla -e "
 library(GEOquery);
 gse <- getGEO('${GSE}', GSEMatrix=TRUE)[[1]];
@@ -23,7 +23,7 @@ read -r -a GSM_IDS <<< "$GSM_IDS_STR"
 echo "Found GSM IDs: ${GSM_IDS[*]}"
 echo
 
-# ── Part 2: From those GSMs, extract SRX accessions ────────────────
+# From those GSMs, extract SRX accessions 
 GSM_CSV=$(IFS=,; echo "${GSM_IDS[*]}")
 SRX_IDS_STR=$(Rscript --vanilla -e "
 library(GEOquery);
@@ -45,7 +45,7 @@ read -r -a SRX_IDS <<< "$SRX_IDS_STR"
 echo "Derived SRX IDs: ${SRX_IDS[*]}"
 echo
 
-# ── Part 3: For each SRX, get SRR runs + BioSample + BioSampleTitle ──
+# For each SRX, get SRR runs + BioSample + BioSampleTitle 
 echo -e "GSE\tSRX\tSRR\tBioSample\tBioSampleTitle"
 for srx in "${SRX_IDS[@]}"; do
   esearch -db sra -query "$srx" \
